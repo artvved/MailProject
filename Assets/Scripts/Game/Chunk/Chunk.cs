@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+namespace Game.Chunk
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public class Chunk : MonoBehaviour
+   {
+      [SerializeField] private AnimationCurve animationCurve;
+      [SerializeField] private Transform begin;
+      [SerializeField] private Transform end;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+      public AnimationCurve ChanceFromDistance => animationCurve;
+
+      public Transform Begin => begin;
+
+      public Transform End => end;
+   }
 }

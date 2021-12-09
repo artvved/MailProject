@@ -1,7 +1,7 @@
 ﻿namespace Game.Player
 {
-    public enum DIrection
+    public enum Direction
     {
-        
+        X,Y,Z
     }
 }

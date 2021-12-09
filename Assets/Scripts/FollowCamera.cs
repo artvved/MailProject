@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Vector3 _offset;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private Transform _target;
+
+    private void Update()
     {
-        
+        if (_target != null)
+        {
+            transform.position = _target.position + _offset;
+        }
     }
 }
