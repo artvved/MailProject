@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Obstacles;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Game.Player
 {
-    
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
         public event Action<Obstacle> ObstacleHitEvent;

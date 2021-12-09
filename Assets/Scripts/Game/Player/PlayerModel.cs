@@ -5,6 +5,13 @@
         private PlayerState state = new PlayerState();
         public float Velocity { get; set; } = 3f;
 
+
+
+        public bool CheckRequirement(Direction direction,Color color)
+        {
+            return state.CheckMatch(direction, color);
+        }
+
         public void Move(Move move)
         {
             switch (move)

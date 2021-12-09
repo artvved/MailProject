@@ -27,8 +27,12 @@ namespace Game
         {
             (directionColorPairs[Direction.Y], directionColorPairs[Direction.Z]) = (directionColorPairs[Direction.Z], directionColorPairs[Direction.Y]);
         }
-        
-        
+
+        public bool CheckMatch(Direction direction,Color color)
+        {
+            return directionColorPairs[direction].Equals(color);
+        }
+
         public Color GetXColor()
         {
             return directionColorPairs[Direction.X];

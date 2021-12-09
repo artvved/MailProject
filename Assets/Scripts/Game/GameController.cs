@@ -9,8 +9,11 @@ namespace Game
 {
     public class GameController : MonoBehaviour
     {
+        [Header("Input")]
         [SerializeField] private InputController inputController;
+        [Header("Player")]
         [SerializeField] private PlayerController playerController;
+        [Header("Chunk")]
         [SerializeField] private ChunkManager chunkManager;
         private PlayerModel playerModel;
         private MoveManager moveManager;
@@ -24,6 +27,21 @@ namespace Game
             {
                 moveManager.Move(move);
             });
+            playerController.ObstacleHitEvent += obstacle =>
+            {
+                print(obstacle.ColorRequirement);
+                var ok = playerModel.CheckRequirement(obstacle.DirRequirement, obstacle.ColorRequirement);
+
+                if (ok)
+                {
+                    print("ok");
+                }
+                else
+                {
+                    print("dead");
+                    //dead
+                }
+            };
             StartGame();
         }
 

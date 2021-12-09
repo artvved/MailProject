@@ -67,8 +67,7 @@ namespace Game.Chunk
             }
 
             return chunkPrefabs[chunkPrefabs.Length - 1];
-        
-            //return ChunkPrefabs[Random.Range(0, ChunkPrefabs.Length )];
+            
         }
     }
 }

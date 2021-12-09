@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using Game;
 using Game.Player;
 using UnityEngine;
-using Color = Game.Color;
 
-public class Obstacle : MonoBehaviour
+namespace Game.Obstacles
 {
-    private Direction dirRequirement;
-    private Color colorRequirement;
+    public class Obstacle : MonoBehaviour
+    {
+        [SerializeField] private Direction directionRequirement;
+        [SerializeField] Color colorRequirement;
+        public Direction DirRequirement => directionRequirement;
+        public Color ColorRequirement => colorRequirement;
+
+
+    }
 }
