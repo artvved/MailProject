@@ -13,7 +13,7 @@ namespace Game
         private float velocity;
         
         //lines
-        private float lineSideDistance = 1f;
+        private float lineSideDistance = 1.2f;
         private int lineCount = 3;
         private int curLine = 1;
         

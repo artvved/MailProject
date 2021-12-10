@@ -29,7 +29,7 @@ namespace Game
             });
             playerController.ObstacleHitEvent += obstacle =>
             {
-                print(obstacle.ColorRequirement);
+              
                 var ok = playerModel.CheckRequirement(obstacle.DirRequirement, obstacle.ColorRequirement);
 
                 if (ok)
