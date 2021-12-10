@@ -22,7 +22,7 @@ namespace Game
         void Start()
         {
             playerModel = new PlayerModel();
-            moveManager = new MoveManager(playerModel,playerController.transform);
+            moveManager = new MoveManager(playerModel,playerController);
             inputController.SwipeEvent += (move =>
             {
                 moveManager.Move(move);

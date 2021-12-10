@@ -11,22 +11,27 @@ namespace Game
         private PlayerModel playerModel;
         private Transform playerTransform;
         private float velocity;
-        
+        private Rigidbody rigidbody;
+
         //lines
         private float lineSideDistance = 1.2f;
         private int lineCount = 3;
         private int curLine = 1;
-        
+
         //moves
         private float moveTime = 0.2f;
+        private float jumpTime = 0.7f;
+        private float jumpForce = 1f;
         private bool isMoving = false;
-        
-        public MoveManager(PlayerModel playerModel,Transform playerTransform)
+
+        public MoveManager(PlayerModel playerModel, PlayerController playerController)
         {
             this.playerModel = playerModel;
-            this.playerTransform = playerTransform;
+            playerTransform = playerController.transform;
             velocity = playerModel.Velocity;
+            rigidbody = playerController.GetComponent<Rigidbody>();
         }
+
         public void Move(Move move)
         {
             if (!isMoving)
@@ -38,73 +43,80 @@ namespace Game
 
         private void MoveTransform(Move move)
         {
+            rigidbody.velocity=Vector3.zero;
             var dir = ConsiderMovement(move);
             var rot = ConsiderRotation(move);
-            Vector3 delta = moveTime * new Vector3(0,0,velocity);
-             
-            isMoving = true;
-            playerTransform.DORotate(rot, moveTime,RotateMode.WorldAxisAdd).SetEase(Ease.Linear);
-            playerTransform.DOMove(playerTransform.position + dir * lineSideDistance+delta, moveTime)
-                .OnComplete((() =>
-                {
-                    isMoving = false;
 
-                }));
+           
+            isMoving = true;
+            playerTransform.DORotate(rot, moveTime, RotateMode.WorldAxisAdd).SetEase(Ease.Linear);
+            if (IsJump(move))
+            {
+                Vector3 delta = jumpTime * new Vector3(0, 0, velocity);
+                playerTransform.DOJump(playerTransform.position + delta, jumpForce, 1, jumpTime)
+                    .SetEase(Ease.Linear)
+                    .OnComplete(OnMoveComplete);
+            }
+            else
+            {
+                Vector3 delta = moveTime * new Vector3(0, 0, velocity);
+                playerTransform.DOMove(playerTransform.position + dir * lineSideDistance + delta, moveTime)
+                    .OnComplete(OnMoveComplete);
+            }
         }
 
-      
+        private void OnMoveComplete()
+        {
+            isMoving = false;
+            rigidbody.velocity = new Vector3(0, 0, velocity);
+        }
+
+        private bool IsJump(Move move)
+        {
+            return move == Game.Move.UP;
+        }
+
 
         private Vector3 ConsiderMovement(Move move)
         {
             switch (move)
             {
                 case Game.Move.LEFT:
-                    if (curLine>0)
+                    if (curLine > 0)
                     {
                         curLine--;
                         return Vector3.left;
                     }
-                    else
-                    {
-                        return Vector3.zero;
-                    }
+
+                    break;
 
 
                 case Game.Move.RIGHT:
-                    if (curLine<lineCount-1)
+                    if (curLine < lineCount - 1)
                     {
                         curLine++;
                         return Vector3.right;
                     }
-                    else
-                    {
-                        return Vector3.zero;
-                    }
 
-                case Game.Move.UP:
-                    return Vector3.up;
-                case Game.Move.BACK:
-                    return Vector3.zero;
+                    break;
             }
+
             return Vector3.zero;
         }
-        
+
         private Vector3 ConsiderRotation(Move move)
         {
             switch (move)
             {
                 case Game.Move.LEFT:
-                    return new Vector3(0,0,90);
+                    return new Vector3(0, 0, 90);
                 case Game.Move.RIGHT:
-                    return new Vector3(0,0,-90);
-                case Game.Move.UP:
-                    return Vector3.zero;
+                    return new Vector3(0, 0, -90);
                 case Game.Move.BACK:
-                    return new Vector3(-90,0,0);
+                    return new Vector3(-90, 0, 0);
             }
-            return  Vector3.zero;
+
+            return Vector3.zero;
         }
-        
-        
     }
 }
