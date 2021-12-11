@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using Game.Obstacles;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 
 namespace Game.Player

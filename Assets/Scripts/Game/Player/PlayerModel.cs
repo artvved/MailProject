@@ -1,10 +1,22 @@
-﻿namespace Game.Player
+﻿using UnityEngine;
+
+namespace Game.Player
 {
     public class PlayerModel
     {
-        private PlayerState state = new PlayerState();
-        public float Velocity { get; set; } = 3f;
+        private PlayerState state;
 
+        public PlayerState State => state;
+
+
+        public Vector3 Velocity { get;  }
+
+
+        public PlayerModel(float velocity)
+        {
+            state = new PlayerState();
+            Velocity = new Vector3(0, 0, velocity);
+        }
 
 
         public bool CheckRequirement(Direction direction,Color color)
@@ -25,9 +37,7 @@
                 case Game.Move.BACK:
                     state.RotateBack();
                     break;
-                case Game.Move.UP:
-                    break;
-                
+
             }
           
         }

@@ -11,10 +11,12 @@ namespace Game.Chunk
         [SerializeField] private Chunk[] chunkPrefabs;
         
         [SerializeField] private Chunk[] startChunks;
+        [SerializeField] private Transform root;
         
         private List<Chunk> chunks = new List<Chunk>();
 
         private int chunkCountToExist = 5;
+        private float chunkDestroyDistance = 15f;
 
         private void Start()
         {
@@ -26,7 +28,7 @@ namespace Game.Chunk
             if (chunks.Count<chunkCountToExist)
             {
                 SpawnChunk(player);
-            }if (chunks[0].gameObject.transform.position.z < player.position.z - 15)
+            }if (chunks[0].gameObject.transform.position.z < player.position.z - chunkDestroyDistance)
             {
                 DeleteChunk();
             }
@@ -41,7 +43,7 @@ namespace Game.Chunk
         private void SpawnChunk(Transform player)
         {
            
-            Chunk newChunk = Instantiate(GetRandomChunk(player));
+            Chunk newChunk = Instantiate(GetRandomChunk(player),root);
             newChunk.transform.position = chunks[chunks.Count - 1].End.position - newChunk.Begin.localPosition;
             chunks.Add(newChunk);
         }

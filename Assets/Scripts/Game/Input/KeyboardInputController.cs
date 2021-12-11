@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Game
 {
-    public class InputController : MonoBehaviour
+    public class KeyboardInputController : MonoBehaviour,IInputable
     {
-        public event Action<Move> SwipeEvent;
+        public event Action<Move> InputEvent;
 
         private KeyCode left = KeyCode.LeftArrow;
         private KeyCode right = KeyCode.RightArrow;
@@ -21,22 +21,24 @@ namespace Game
             if (Input.GetKeyDown(left))
             {
                 curMove = Move.LEFT;
-                SwipeEvent?.Invoke(curMove);
+                InputEvent?.Invoke(curMove);
             }else if (Input.GetKeyDown(right))
             {
                 curMove = Move.RIGHT;
-                SwipeEvent?.Invoke(curMove);
+                InputEvent?.Invoke(curMove);
             }
             else if (Input.GetKeyDown(up))
             {
                 curMove = Move.UP;
-                SwipeEvent?.Invoke(curMove);
+                InputEvent?.Invoke(curMove);
             }else if (Input.GetKeyDown(back))
             {
                 curMove = Move.BACK;
-                SwipeEvent?.Invoke(curMove);
+                InputEvent?.Invoke(curMove);
             }
         
         }
+        
+       
     }
 }

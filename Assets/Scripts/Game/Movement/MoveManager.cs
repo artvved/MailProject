@@ -10,7 +10,7 @@ namespace Game
         //player
         private PlayerModel playerModel;
         private Transform playerTransform;
-        private float velocity;
+        private Vector3 velocity;
         private Rigidbody rigidbody;
 
         //lines
@@ -24,12 +24,12 @@ namespace Game
         private float jumpForce = 1f;
         private bool isMoving = false;
 
-        public MoveManager(PlayerModel playerModel, PlayerController playerController)
+        public MoveManager(PlayerModel playerModel, PlayerController playerController, Rigidbody rigidbody)
         {
             this.playerModel = playerModel;
             playerTransform = playerController.transform;
             velocity = playerModel.Velocity;
-            rigidbody = playerController.GetComponent<Rigidbody>();
+            this.rigidbody = rigidbody;
         }
 
         public void Move(Move move)
@@ -43,23 +43,23 @@ namespace Game
 
         private void MoveTransform(Move move)
         {
-            rigidbody.velocity=Vector3.zero;
+            StopSliding();
             var dir = ConsiderMovement(move);
             var rot = ConsiderRotation(move);
 
-           
+
             isMoving = true;
             playerTransform.DORotate(rot, moveTime, RotateMode.WorldAxisAdd).SetEase(Ease.Linear);
             if (IsJump(move))
             {
-                Vector3 delta = jumpTime * new Vector3(0, 0, velocity);
+                Vector3 delta = jumpTime * velocity;
                 playerTransform.DOJump(playerTransform.position + delta, jumpForce, 1, jumpTime)
                     .SetEase(Ease.Linear)
                     .OnComplete(OnMoveComplete);
             }
             else
             {
-                Vector3 delta = moveTime * new Vector3(0, 0, velocity);
+                Vector3 delta = moveTime * velocity;
                 playerTransform.DOMove(playerTransform.position + dir * lineSideDistance + delta, moveTime)
                     .OnComplete(OnMoveComplete);
             }
@@ -68,8 +68,20 @@ namespace Game
         private void OnMoveComplete()
         {
             isMoving = false;
-            rigidbody.velocity = new Vector3(0, 0, velocity);
+            StartSliding();
         }
+
+        public void StartSliding()
+        {
+            rigidbody.velocity = velocity;
+        }
+
+        public void StopSliding()
+        {
+            playerTransform.DOKill();
+            rigidbody.velocity = Vector3.zero;
+        }
+
 
         private bool IsJump(Move move)
         {
