@@ -10,7 +10,7 @@ namespace Game.Chunk
     {
         [SerializeField] private Chunk[] chunkPrefabs;
         
-        [SerializeField] private Chunk[] startChunks;
+        [SerializeField] private Chunk startChunkPrefab;
         [SerializeField] private Transform root;
         
         private List<Chunk> chunks = new List<Chunk>();
@@ -18,35 +18,60 @@ namespace Game.Chunk
         private int chunkCountToExist = 5;
         private float chunkDestroyDistance = 15f;
 
-        private void Start()
+     
+        public void SpawnStartChunks()
         {
-            chunks.AddRange(startChunks);
+            for (int i = 0; i < 3; i++)
+            {
+                
+                SpawnChunk(startChunkPrefab);
+            }
+           
+        }
+
+        public void ClearChunks()
+        {
+            while (chunks.Count>0)
+            {
+                DeleteChunk();
+            }
+        }
+
+        private void SpawnChunk(Chunk chunk)
+        {
+           
+            Chunk newChunk = Instantiate(chunk,root);
+            if (chunks.Count>0)
+            {
+                newChunk.transform.position = chunks[chunks.Count - 1].End.position - newChunk.Begin.localPosition;
+            }
+            else
+            {
+                var position = newChunk.transform.position;
+                position =new Vector3( position.x, position.y, position.z-chunkDestroyDistance);
+                newChunk.transform.position = position;
+            }
+
+            chunks.Add(newChunk);
         }
 
         public void UpdateChunks(Transform player)
         {
             if (chunks.Count<chunkCountToExist)
             {
-                SpawnChunk(player);
+                SpawnChunk(GetRandomChunk(player));
             }if (chunks[0].gameObject.transform.position.z < player.position.z - chunkDestroyDistance)
             {
                 DeleteChunk();
             }
         }
-        
+
         private void DeleteChunk()
         {
             Destroy(chunks[0].gameObject);
             chunks.RemoveAt(0);
         }
 
-        private void SpawnChunk(Transform player)
-        {
-           
-            Chunk newChunk = Instantiate(GetRandomChunk(player),root);
-            newChunk.transform.position = chunks[chunks.Count - 1].End.position - newChunk.Begin.localPosition;
-            chunks.Add(newChunk);
-        }
         private Chunk GetRandomChunk(Transform player)
         {
         

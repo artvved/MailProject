@@ -5,18 +5,27 @@ namespace Game.Player
     public class PlayerModel
     {
         private PlayerState state;
-
+        private float moveTime = 0.2f;
+        private float jumpTime = 0.5f;
+        private float jumpForce = 1.5f;
+        private Vector3 velocity;
+        
         public PlayerState State => state;
+        public float MoveTime => moveTime;
+        public float JumpTime => jumpTime;
+        public float JumpForce => jumpForce;
+        public Vector3 Velocity => velocity;
 
-
-        public Vector3 Velocity { get;  }
-
-
-        public PlayerModel(float velocity)
+        public PlayerModel( float moveTime, float jumpTime, float jumpForce, float velocity)
         {
             state = new PlayerState();
-            Velocity = new Vector3(0, 0, velocity);
+            this.moveTime = moveTime;
+            this.jumpTime = jumpTime;
+            this.jumpForce = jumpForce;
+            this.velocity =  new Vector3(0, 0, velocity);
         }
+
+        
 
 
         public bool CheckRequirement(Direction direction,Color color)

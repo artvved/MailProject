@@ -21,7 +21,6 @@ namespace UI
             };
             gameController.MoveEvent += () =>
             {
-                print(gameController.PlayerModel.State.GetYColor());
                 gameScreen.SetScoreColor(colorConverter.Colors[gameController.PlayerModel.State.GetYColor()]);
             };
             gameController.ScoreChangeEvent += () =>

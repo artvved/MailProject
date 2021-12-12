@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 07703449b2e7cfb42ba0dbe5acb2d724, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 42584186212030f42916394167261809, type: 2}
+      objectReference: {fileID: 2100000, guid: 30e5b3c99c76bc74881175d1c07a788c, type: 2}
     - target: {fileID: 919132149155446097, guid: 07703449b2e7cfb42ba0dbe5acb2d724, type: 3}
       propertyPath: m_Name
       value: orange cube

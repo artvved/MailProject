@@ -18,10 +18,7 @@ namespace Game
         private int lineCount = 3;
         private int curLine = 1;
 
-        //moves
-        private float moveTime = 0.2f;
-        private float jumpTime = 0.7f;
-        private float jumpForce = 1f;
+        
         private bool isMoving = false;
 
         public MoveManager(PlayerModel playerModel, PlayerController playerController, Rigidbody rigidbody)
@@ -49,18 +46,18 @@ namespace Game
 
 
             isMoving = true;
-            playerTransform.DORotate(rot, moveTime, RotateMode.WorldAxisAdd).SetEase(Ease.Linear);
+            playerTransform.DORotate(rot, playerModel.MoveTime, RotateMode.WorldAxisAdd).SetEase(Ease.Linear);
             if (IsJump(move))
             {
-                Vector3 delta = jumpTime * velocity;
-                playerTransform.DOJump(playerTransform.position + delta, jumpForce, 1, jumpTime)
+                Vector3 delta = playerModel.JumpTime * velocity;
+                playerTransform.DOJump(playerTransform.position + delta+new Vector3(0,0,1), playerModel.JumpForce, 1, playerModel.JumpTime)
                     .SetEase(Ease.Linear)
                     .OnComplete(OnMoveComplete);
             }
             else
             {
-                Vector3 delta = moveTime * velocity;
-                playerTransform.DOMove(playerTransform.position + dir * lineSideDistance + delta, moveTime)
+                Vector3 delta = playerModel.MoveTime * velocity;
+                playerTransform.DOMove(playerTransform.position + dir * lineSideDistance + delta, playerModel.MoveTime)
                     .OnComplete(OnMoveComplete);
             }
         }

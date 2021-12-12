@@ -10,6 +10,9 @@ namespace Game
         private Vector2 secondPressPos;
         private Vector2 currentSwipe;
 
+        private float leftXBorder = -0.7f;
+        private float rightXBorder = 0.5f;
+
         private float minLen = 80;
 
         void Update()
@@ -29,28 +32,26 @@ namespace Game
                 secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
                 currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-                if (currentSwipe.magnitude < minLen)
+                if (currentSwipe.magnitude >= minLen)
                 {
-                    return;
-                }
-
-                currentSwipe.Normalize();
-
-                if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                {
-                    InputEvent?.Invoke(Move.UP);
-                }
-                else if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                {
-                    InputEvent?.Invoke(Move.BACK);
-                }
-                else if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                {
-                    InputEvent?.Invoke(Move.LEFT);
-                }
-                else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                {
-                    InputEvent?.Invoke(Move.RIGHT);
+                    currentSwipe.Normalize();
+                    
+                    if (currentSwipe.y > 0 && currentSwipe.x > leftXBorder && currentSwipe.x < rightXBorder)
+                    {
+                        InputEvent?.Invoke(Move.UP);
+                    }
+                    else if (currentSwipe.y < 0 && currentSwipe.x > leftXBorder && currentSwipe.x < rightXBorder)
+                    {
+                        InputEvent?.Invoke(Move.BACK);
+                    }
+                    else if (currentSwipe.x < 0 && currentSwipe.y > leftXBorder && currentSwipe.y < rightXBorder)
+                    {
+                        InputEvent?.Invoke(Move.LEFT);
+                    }
+                    else if (currentSwipe.x > 0 && currentSwipe.y > leftXBorder && currentSwipe.y < rightXBorder)
+                    {
+                        InputEvent?.Invoke(Move.RIGHT);
+                    }
                 }
             }
         }

@@ -10,6 +10,9 @@ namespace Game
         [Header("Input")] [SerializeField] private SwipeInputController swipeInputController;
         [Header("Player")] [SerializeField] private PlayerController playerController;
         [SerializeField] private float velocity;
+        [SerializeField]private float moveTime ;
+        [SerializeField] private float jumpTime;
+        [SerializeField]private float jumpForce;
         [Header("Chunk")] [SerializeField] private ChunkManager chunkManager;
         private PlayerModel playerModel;
         private MoveManager moveManager;
@@ -29,7 +32,7 @@ namespace Game
         {
             state = GameState.DEAD;
             ResetGame();
-
+           
 
             swipeInputController.InputEvent += (move =>
             {
@@ -52,6 +55,7 @@ namespace Game
                     print("ded");
                     StopGame();
                     DeathEvent?.Invoke();
+                    chunkManager.ClearChunks();
                 }
             };
 
@@ -69,8 +73,9 @@ namespace Game
         {
             playerController.transform.position = new Vector3(0, 0, 0);
             playerController.transform.rotation = Quaternion.identity;
-            playerModel = new PlayerModel(velocity);
+            playerModel = new PlayerModel(moveTime,jumpTime,jumpForce,velocity);
             moveManager = new MoveManager(playerModel, playerController, playerController.GetComponent<Rigidbody>());
+            chunkManager.SpawnStartChunks();
         }
 
         public void StopGame()
