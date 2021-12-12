@@ -12,7 +12,7 @@ namespace Game
         public PlayerState()
         {
             directionColorPairs.Add(Direction.X,Color.GREEN);
-            directionColorPairs.Add(Direction.Y,Color.PURPULE);
+            directionColorPairs.Add(Direction.Y,Color.PURPLE);
             directionColorPairs.Add(Direction.Z,Color.ORANGE);
         }
         

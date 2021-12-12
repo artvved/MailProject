@@ -1515,6 +1515,7 @@ GameObject:
   - component: {fileID: 1786062503}
   - component: {fileID: 1786062499}
   - component: {fileID: 1786062502}
+  - component: {fileID: 1786062504}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1541,6 +1542,7 @@ MonoBehaviour:
   jumpTime: 0.6
   jumpForce: 1.2
   chunkManager: {fileID: 1786062502}
+  effectManager: {fileID: 1786062504}
 --- !u!4 &1786062500
 Transform:
   m_ObjectHideFlags: 0
@@ -1598,6 +1600,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e53db6a187642a0a07f220528dd54c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1786062504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786062498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ca5c71bf424e7d93addc260c7e54cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchEffectPrefab: {fileID: 622265793550395111, guid: 571975c1bbccea04f83bc9d552be2cc8, type: 3}
+  orangeEffect: {fileID: 2100000, guid: c89b603fae5e41e478395d9390086f19, type: 2}
+  greenEffect: {fileID: 2100000, guid: 403c4a059e845ab4da277ff9c13ce300, type: 2}
+  purpuleEffect: {fileID: 2100000, guid: 411364affbd0b884981d5959909223e6, type: 2}
 --- !u!1 &2116462525
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,6 @@
     [System.Flags]
     public enum Color
     {
-        GREEN,PURPULE,ORANGE
+        GREEN,PURPLE,ORANGE
     }
 }

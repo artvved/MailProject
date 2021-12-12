@@ -11,7 +11,7 @@ namespace UI
         public ColorConverter()
         {
             Colors = new Dictionary<Color, UnityEngine.Color32>();
-            Colors.Add(Color.PURPULE,new Color32(65 ,8 ,75,255));
+            Colors.Add(Color.PURPLE,new Color32(65 ,8 ,75,255));
             Colors.Add(Color.GREEN,new UnityEngine.Color32(18 ,75 ,22,255));
             Colors.Add(Color.ORANGE,new UnityEngine.Color32(122 ,63, 15,255));
         }

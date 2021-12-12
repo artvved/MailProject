@@ -14,6 +14,8 @@ namespace Game
         [SerializeField] private float jumpTime;
         [SerializeField]private float jumpForce;
         [Header("Chunk")] [SerializeField] private ChunkManager chunkManager;
+        [Header("Effects")] [SerializeField] private EffectManager effectManager;
+
         private PlayerModel playerModel;
         private MoveManager moveManager;
         private GameState state;
@@ -49,6 +51,7 @@ namespace Game
                 if (isMatch)
                 {
                     print("ok");
+                    effectManager.PlayMatchEffect(playerController.transform.position,obstacle.ColorRequirement);
                 }
                 else
                 {
