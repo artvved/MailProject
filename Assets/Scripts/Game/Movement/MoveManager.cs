@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design.Serialization;
+﻿using System;
+using System.ComponentModel.Design.Serialization;
 using DG.Tweening;
 using Game.Player;
 using UnityEngine;
@@ -18,8 +19,10 @@ namespace Game
         private int lineCount = 3;
         private int curLine = 1;
 
-        
+
         private bool isMoving = false;
+
+        public bool IsMoving => isMoving;
 
         public MoveManager(PlayerModel playerModel, PlayerController playerController, Rigidbody rigidbody)
         {
@@ -33,6 +36,7 @@ namespace Game
         {
             if (!isMoving)
             {
+               
                 playerModel.Move(move);
                 MoveTransform(move);
             }
@@ -50,7 +54,8 @@ namespace Game
             if (IsJump(move))
             {
                 Vector3 delta = playerModel.JumpTime * velocity;
-                playerTransform.DOJump(playerTransform.position + delta+new Vector3(0,0,1), playerModel.JumpForce, 1, playerModel.JumpTime)
+                playerTransform.DOJump(playerTransform.position + delta + new Vector3(0, 0, 1), playerModel.JumpForce,
+                        1, playerModel.JumpTime)
                     .SetEase(Ease.Linear)
                     .OnComplete(OnMoveComplete);
             }
@@ -80,7 +85,7 @@ namespace Game
         }
 
 
-        private bool IsJump(Move move)
+        public bool IsJump(Move move)
         {
             return move == Game.Move.UP;
         }

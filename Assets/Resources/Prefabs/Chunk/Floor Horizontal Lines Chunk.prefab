@@ -2391,7 +2391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[0].time
-      value: -0.37771606
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[1].time
@@ -2407,7 +2407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[0].value
-      value: 0.09863281
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[1].value
@@ -2423,11 +2423,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[0].inSlope
-      value: 0.013162323
+      value: 0.009949137
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[1].inSlope
-      value: 0.0057032965
+      value: 0.0040967036
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[2].inSlope
@@ -2439,7 +2439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[0].outSlope
-      value: 0.013162323
+      value: 0.009949137
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[1].inWeight
@@ -2447,7 +2447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[1].outSlope
-      value: 0.0057032965
+      value: 0.0040967036
       objectReference: {fileID: 0}
     - target: {fileID: 7812405950227552301, guid: 113ebc3af399dcc408b3d55c247488af, type: 3}
       propertyPath: animationCurve.m_Curve.Array.data[2].inWeight

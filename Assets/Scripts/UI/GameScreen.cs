@@ -21,8 +21,7 @@ namespace UI
         public void SetScoreColor(Color32 color)
         {
             image.color = color;
-            //image.color = new Color(scoreText.color.r,scoreText.color.g,scoreText.color.b,scoreText.color.a/2);
-            //scoreText.color = color;
+            
         }
     }
 }

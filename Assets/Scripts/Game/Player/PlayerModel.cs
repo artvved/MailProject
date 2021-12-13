@@ -5,9 +5,9 @@ namespace Game.Player
     public class PlayerModel
     {
         private PlayerState state;
-        private float moveTime = 0.2f;
-        private float jumpTime = 0.5f;
-        private float jumpForce = 1.5f;
+        private float moveTime ;
+        private float jumpTime ;
+        private float jumpForce ;
         private Vector3 velocity;
         
         public PlayerState State => state;

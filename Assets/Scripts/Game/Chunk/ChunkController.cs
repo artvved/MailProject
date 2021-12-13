@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Game.Chunk
 {
-    public class ChunkManager : MonoBehaviour
+    public class ChunkController : MonoBehaviour
     {
         [SerializeField] private Chunk[] chunkPrefabs;
         
@@ -21,6 +21,7 @@ namespace Game.Chunk
      
         public void SpawnStartChunks()
         {
+           
             for (int i = 0; i < 3; i++)
             {
                 
@@ -89,6 +90,7 @@ namespace Game.Chunk
                 sum += chances[i];
                 if (value < sum)
                 {
+                    
                     return chunkPrefabs[i];
                 }
             }

@@ -11,6 +11,8 @@ public class StartScreen : MonoBehaviour
     
     public event Action StartGameEvent;
     
+    public event Action OptionsEvent;
+    
     public event Action QuitGameEvent;
     
     public event Action EnableEvent;
@@ -18,6 +20,10 @@ public class StartScreen : MonoBehaviour
     public void OnStartGame()
     {
         StartGameEvent?.Invoke();
+    }
+    public void OnOptions()
+    {
+        OptionsEvent?.Invoke();
     }
     
 

@@ -3,10 +3,12 @@ using UnityEngine;
 
 namespace Game
 {
-    public class EffectManager : MonoBehaviour
+    public class EffectController : MonoBehaviour
     {
         [SerializeField] private ParticleSystem matchEffectPrefab;
         private ParticleSystem matchEffect;
+        [SerializeField] private ParticleSystem mismatchEffectPrefab;
+        private ParticleSystem mismatchEffect;
         
         [SerializeField] private Material orangeEffect;
         [SerializeField] private Material greenEffect;
@@ -17,14 +19,24 @@ namespace Game
         private void Start()
         {
             matchEffect=Instantiate(matchEffectPrefab);
+            mismatchEffect=Instantiate(mismatchEffectPrefab);
             renderer = matchEffect.GetComponent<ParticleSystemRenderer>();
         }
 
         public void PlayMatchEffect(Vector3 position, Color obstacleColorRequirement)
         {
             SetMaterial(obstacleColorRequirement);
-            matchEffect.transform.position = position;
-            matchEffect.Play();
+            PlayEffect(position,matchEffect);
+        }
+        public void PlayMismatchEffect(Vector3 position)
+        {
+           PlayEffect(position,mismatchEffect);
+        }
+
+        private void PlayEffect(Vector3 pos,ParticleSystem effect)
+        {
+            effect.transform.position = pos;
+            effect.Play();
         }
 
         private void SetMaterial(Color color)
