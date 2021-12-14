@@ -5302,7 +5302,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3785515906874035}
   - component: {fileID: 7631070212226090659}
-  - component: {fileID: 4218956742407677398}
   m_Layer: 0
   m_Name: 3 Dots Chunk
   m_TagString: Untagged
@@ -5388,32 +5387,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95492c1e808c38843bee39fcd07442d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationCurve:
+  chanceFromDistance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.3
-      inSlope: 0.018293766
-      outSlope: 0.018293766
+      value: 0.2
+      inSlope: 0.009949137
+      outSlope: 0.009949137
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 22.527899
-      value: 0.7121201
-      inSlope: 0.0062945024
-      outSlope: 0.0062945024
-      tangentMode: 0
+      time: 30
+      value: 0.49847412
+      inSlope: 0.0040967036
+      outSlope: 0.0040967036
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.042390313
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 200
       value: 0.2
-      inSlope: -0.0028856373
-      outSlope: -0.0028856373
+      inSlope: -0.0017557302
+      outSlope: -0.0017557302
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -5423,19 +5422,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   begin: {fileID: 6444836870324927648}
   end: {fileID: 6745553227301211047}
---- !u!114 &4218956742407677398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6426310234937064943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5518b70f10c4e4e469a7db385fc4a370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 3785515906874035}
   places:
   - {fileID: 7387300809308749950}
   - {fileID: 7383565340640320121}

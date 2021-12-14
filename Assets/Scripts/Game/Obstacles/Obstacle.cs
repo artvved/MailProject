@@ -1,5 +1,6 @@
 using Game.Player;
 using UnityEngine;
+using Color = Game.Player.Color;
 
 namespace Game.Obstacles
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Obstacles;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,39 @@ namespace Game.Chunk
             }
            
         }
+        
+        private void SetUpChunk(Chunk chunk)
+        {
+            var places = chunk.Places;
+            if (chunk.IsSingleColor)
+            {
+                var obs = GetRandomObstacle(chunk.ObstaclePrefabs);
+                for (int i = 0; i < places.Length; i++)
+                {
+                    PlaceObstacle(places[i],obs,chunk.transform);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < places.Length; i++)
+                {
+                    PlaceObstacle(places[i],GetRandomObstacle(chunk.ObstaclePrefabs),chunk.transform);
+                }
+            }
+        }
+        
+        private Obstacle GetRandomObstacle(Obstacle[] obstaclePrefabs)
+        {
+            return obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+        }
+
+        private void PlaceObstacle(Transform tr,Obstacle obstacle,Transform rootChunk)
+        {
+            var obs = Instantiate(obstacle,rootChunk );
+            obs.transform.position = tr.position;
+            obs.transform.rotation = tr.rotation;
+            Destroy(tr.gameObject);
+        }
 
         public void ClearChunks()
         {
@@ -53,6 +87,7 @@ namespace Game.Chunk
                 newChunk.transform.position = position;
             }
 
+            SetUpChunk(newChunk);
             chunks.Add(newChunk);
         }
 

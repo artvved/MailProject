@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Color = Game.Color;
+using Color = Game.Player.Color;
 
 namespace UI
 {

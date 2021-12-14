@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Game.Player;
 
-namespace Game
+namespace Game.Player
 {
     public class PlayerState
     {

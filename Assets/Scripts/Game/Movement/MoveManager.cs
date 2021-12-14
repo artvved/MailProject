@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel.Design.Serialization;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Game.Player;
 using UnityEngine;
 
-namespace Game
+namespace Game.Movement
 {
     public class MoveManager
     {
@@ -87,7 +85,7 @@ namespace Game
 
         public bool IsJump(Move move)
         {
-            return move == Game.Move.UP;
+            return move == Movement.Move.UP;
         }
 
 
@@ -95,7 +93,7 @@ namespace Game
         {
             switch (move)
             {
-                case Game.Move.LEFT:
+                case Movement.Move.LEFT:
                     if (curLine > 0)
                     {
                         curLine--;
@@ -105,7 +103,7 @@ namespace Game
                     break;
 
 
-                case Game.Move.RIGHT:
+                case Movement.Move.RIGHT:
                     if (curLine < lineCount - 1)
                     {
                         curLine++;
@@ -122,11 +120,11 @@ namespace Game
         {
             switch (move)
             {
-                case Game.Move.LEFT:
+                case Movement.Move.LEFT:
                     return new Vector3(0, 0, 90);
-                case Game.Move.RIGHT:
+                case Movement.Move.RIGHT:
                     return new Vector3(0, 0, -90);
-                case Game.Move.BACK:
+                case Movement.Move.BACK:
                     return new Vector3(-90, 0, 0);
             }
 

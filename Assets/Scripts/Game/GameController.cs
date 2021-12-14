@@ -1,8 +1,11 @@
 using System;
 using Game.Audio;
 using Game.Chunk;
+using Game.Effects;
+using Game.Movement;
 using Game.Player;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Game
 {
@@ -27,6 +30,7 @@ namespace Game
         [SerializeField] private AudioClip mismatchSound;
         [SerializeField] private AudioClip gameMusic;
         [SerializeField] private AudioClip menuMusic;
+        [SerializeField]private AudioMixerGroup mixer;
 
         private PlayerModel playerModel;
         private MoveManager moveManager;
@@ -34,6 +38,8 @@ namespace Game
         private int score = 0;
 
         public int Score => score;
+
+        public AudioMixerGroup Mixer => mixer;
 
         public PlayerModel PlayerModel => playerModel;
 

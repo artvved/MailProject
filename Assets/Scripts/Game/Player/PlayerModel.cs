@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Movement;
+using UnityEngine;
 
 namespace Game.Player
 {
@@ -37,13 +38,13 @@ namespace Game.Player
         {
             switch (move)
             {
-                case Game.Move.LEFT:
+                case Movement.Move.LEFT:
                     state.RotateSide();
                     break;
-                case Game.Move.RIGHT:
+                case Movement.Move.RIGHT:
                     state.RotateSide();
                     break;
-                case Game.Move.BACK:
+                case Movement.Move.BACK:
                     state.RotateBack();
                     break;
 

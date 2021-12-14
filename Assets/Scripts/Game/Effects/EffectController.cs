@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using Color = Game.Player.Color;
 
-namespace Game
+namespace Game.Effects
 {
     public class EffectController : MonoBehaviour
     {

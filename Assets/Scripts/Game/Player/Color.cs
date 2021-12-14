@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace Game.Player
 {
     [System.Flags]
     public enum Color

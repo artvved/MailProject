@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace Game.Movement
 {
     public enum Move
     {

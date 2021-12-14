@@ -7658,7 +7658,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2846555001065040363}
   - component: {fileID: 5650484487884199419}
-  - component: {fileID: 2090007317122561678}
   m_Layer: 0
   m_Name: Top Laser Chunk
   m_TagString: Untagged
@@ -7757,32 +7756,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95492c1e808c38843bee39fcd07442d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationCurve:
+  chanceFromDistance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.2
-      inSlope: 0.022732707
-      outSlope: 0.022732707
+      value: 0.1
+      inSlope: 0.0043194983
+      outSlope: 0.0043194983
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 22.527899
-      value: 0.7121201
-      inSlope: 0.0062945024
-      outSlope: 0.0062945024
+      time: 57.57318
+      value: 0.34868726
+      inSlope: 0.012829241
+      outSlope: 0.012829241
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.042390313
+      outWeight: 0.017506488
     - serializedVersion: 3
       time: 200
       value: 0.2
-      inSlope: -0.0028856373
-      outSlope: -0.0028856373
+      inSlope: -0.0010439554
+      outSlope: -0.0010439554
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -7792,19 +7791,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   begin: {fileID: 9150510312228843512}
   end: {fileID: 8795680373363906815}
---- !u!114 &2090007317122561678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9125237623288049335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5518b70f10c4e4e469a7db385fc4a370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 2846555001065040363}
   places:
   - {fileID: 2889320673628823140}
   - {fileID: 2889320673006764091}

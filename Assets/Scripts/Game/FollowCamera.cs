@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private Vector3 _offset;
-
-    [SerializeField] private Transform _target;
-
-    private void Update()
+    public class FollowCamera : MonoBehaviour
     {
-        if (_target != null)
+        [SerializeField] private Vector3 _offset;
+
+        [SerializeField] private Transform _target;
+
+        private void Update()
         {
-            transform.position = _target.position + _offset;
+            if (_target != null)
+            {
+                transform.position = _target.position + _offset;
+            }
         }
     }
 }

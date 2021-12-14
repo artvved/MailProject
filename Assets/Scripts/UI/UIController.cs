@@ -12,13 +12,16 @@ namespace UI
         [SerializeField] private GameController gameController;
         [SerializeField] private StartScreen startScreen;
         [SerializeField] private GameScreen gameScreen;
+        [SerializeField] private RulesScreen rulesScreen;
         [SerializeField] private Image deathImage;
-        [SerializeField] private AudioMixerGroup mixer;
+
         [Header("Options")]
         [SerializeField] private OptionsScreen optionsScreen;
+
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider soundSlider;
 
+        private AudioMixerGroup mixer;
         private ColorConverter colorConverter;
         private Vector3 deathImageStartPos;
 
@@ -26,6 +29,7 @@ namespace UI
         {
             deathImageStartPos = deathImage.rectTransform.position;
             colorConverter = new ColorConverter();
+            mixer = gameController.Mixer;
             gameController.DeathEvent += () =>
             {
                 deathImage.gameObject.SetActive(true);
@@ -58,6 +62,7 @@ namespace UI
             };
             startScreen.QuitGameEvent += () => Application.Quit();
             startScreen.OptionsEvent += () => { OpenScreen(startScreen.gameObject,optionsScreen.gameObject);};
+            startScreen.RulesEvent += () => { OpenScreen(startScreen.gameObject,rulesScreen.gameObject);};
             optionsScreen.BackToMenuEvent += () =>
             {
                 OpenScreen(optionsScreen.gameObject, startScreen.gameObject);
@@ -70,11 +75,15 @@ namespace UI
             {
                 ChangeSoundVolume(vol);
             };
-            optionsScreen.EnableEvent += () =>
-            {
+            
                 musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
                 soundSlider.value = PlayerPrefs.GetFloat("SoundVolume", 1f);
+            
+            rulesScreen.BackToMenuEvent += () =>
+            {
+                OpenScreen(rulesScreen.gameObject, startScreen.gameObject);
             };
+            
             
             startScreen.gameObject.SetActive(true);
 
@@ -91,8 +100,6 @@ namespace UI
                     deathImage.gameObject.SetActive(false);
                 });
             
-            
-           
         }
         
         private void OpenScreen(GameObject oldScreen, GameObject newScreen)
