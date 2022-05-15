@@ -9,21 +9,21 @@ namespace Game.Player
         private float moveTime ;
         private float jumpTime ;
         private float jumpForce ;
-        private Vector3 velocity;
+        private AnimationCurve velocityCurve;
         
         public PlayerState State => state;
         public float MoveTime => moveTime;
         public float JumpTime => jumpTime;
         public float JumpForce => jumpForce;
-        public Vector3 Velocity => velocity;
+        public AnimationCurve VelocityCurve => velocityCurve;
 
-        public PlayerModel( float moveTime, float jumpTime, float jumpForce, float velocity)
+        public PlayerModel( float moveTime, float jumpTime, float jumpForce, AnimationCurve velocityCurve)
         {
             state = new PlayerState();
             this.moveTime = moveTime;
             this.jumpTime = jumpTime;
             this.jumpForce = jumpForce;
-            this.velocity =  new Vector3(0, 0, velocity);
+            this.velocityCurve = velocityCurve;
         }
 
         

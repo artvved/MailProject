@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Obstacles;
 using UnityEngine;
+using Color = Game.Player.Color;
 using Random = UnityEngine.Random;
 
 namespace Game.Chunk
@@ -10,63 +11,118 @@ namespace Game.Chunk
     public class ChunkController : MonoBehaviour
     {
         [SerializeField] private Chunk[] chunkPrefabs;
-        
+
         [SerializeField] private Chunk startChunkPrefab;
         [SerializeField] private Transform root;
-        
+
         private List<Chunk> chunks = new List<Chunk>();
 
         private int chunkCountToExist = 5;
         private float chunkDestroyDistance = 15f;
+        public ColorMaterialMatcher ColorMaterialMatcher { get; set; }
 
-     
+        private Color[] colors = new[] {Color.GREEN, Color.ORANGE, Color.PURPLE};
+
+
         public void SpawnStartChunks()
         {
-           
             for (int i = 0; i < 3; i++)
             {
-                
                 SpawnChunk(startChunkPrefab);
             }
-           
         }
-        
+
         private void SetUpChunk(Chunk chunk)
         {
-            var places = chunk.Places;
+            //setup position
+            SetUpChunkPosition(chunk);
+            //setup obstacles and effects
+            SetUpChunkObstacles(chunk);
+            SetUpChunkEffects(chunk);
+        }
+
+        private void SetUpChunkObstacles(Chunk chunk)
+        {
+            var obstacles = chunk.Places;
             if (chunk.IsSingleColor)
             {
-                var obs = GetRandomObstacle(chunk.ObstaclePrefabs);
-                for (int i = 0; i < places.Length; i++)
+                var color = GetRandomObstacleColor();
+                var obsMat = ColorMaterialMatcher.GetObstacleMaterial(color);
+                for (int i = 0; i < obstacles.Length; i++)
                 {
-                    PlaceObstacle(places[i],obs,chunk.transform);
+                    obstacles[i].ColorRequirement = color;
+                    obstacles[i].GetComponentInChildren<MeshRenderer>().material = obsMat;
                 }
             }
             else
             {
-                for (int i = 0; i < places.Length; i++)
+                for (int i = 0; i < obstacles.Length; i++)
                 {
-                    PlaceObstacle(places[i],GetRandomObstacle(chunk.ObstaclePrefabs),chunk.transform);
+                    var color = GetRandomObstacleColor();
+                    var obsMat = ColorMaterialMatcher.GetObstacleMaterial(color);
+                    obstacles[i].ColorRequirement = color;
+                    obstacles[i].GetComponentInChildren<MeshRenderer>().material = obsMat;
                 }
             }
         }
-        
-        private Obstacle GetRandomObstacle(Obstacle[] obstaclePrefabs)
+
+        private void SetUpChunkEffects(Chunk chunk)
         {
-            return obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            var obstacles = chunk.Places;
+            var laserSparkEffectPlaces = chunk.LaserSparkEffectPlaces;
+            for (int i = 0; i < obstacles.Length; i++)
+            {
+                var color = obstacles[i].ColorRequirement;
+                var obsMat = ColorMaterialMatcher.GetEffectMaterial(color);
+                laserSparkEffectPlaces[i].GetComponent<Renderer>().material = obsMat;
+            }
         }
 
-        private void PlaceObstacle(Transform tr,Obstacle obstacle,Transform rootChunk)
+        private void SetUpChunkPosition(Chunk chunk)
         {
-            var obs = Instantiate(obstacle,rootChunk );
+            if (chunks.Count > 0)
+            {
+                chunk.transform.position = chunks[chunks.Count - 1].End.position - chunk.Begin.localPosition;
+            }
+            else
+            {
+                var position = chunk.transform.position;
+                position = new Vector3(position.x, position.y, position.z - chunkDestroyDistance);
+                chunk.transform.position = position;
+            }
+        }
+
+        private Color GetRandomObstacleColor()
+        {
+            return colors[Random.Range(0, colors.Length)];
+        }
+
+        private void PlaceObstacle(Obstacle obstaclePlace, Obstacle newObstacle, Transform rootChunk)
+        {
+            Transform tr = obstaclePlace.transform;
+            var obs = Instantiate(newObstacle, rootChunk);
             obs.transform.position = tr.position;
             obs.transform.rotation = tr.rotation;
+            obs.transform.localScale = tr.lossyScale;
+
+            obs.DirectionRequirement = obstaclePlace.DirectionRequirement;
+            Destroy(tr.gameObject);
+        }
+
+        private void PlaceEffect(ParticleSystem effectPlace, ParticleSystem newEffect, Transform rootChunk)
+        {
+            Transform tr = effectPlace.transform;
+            var obs = Instantiate(newEffect, rootChunk);
+            obs.transform.position = tr.position;
+            obs.transform.rotation = tr.rotation;
+            obs.transform.localScale = tr.lossyScale;
+
             Destroy(tr.gameObject);
         }
 
         public void ClearChunks()
         {
-            while (chunks.Count>0)
+            while (chunks.Count > 0)
             {
                 DeleteChunk();
             }
@@ -74,29 +130,19 @@ namespace Game.Chunk
 
         private void SpawnChunk(Chunk chunk)
         {
-           
-            Chunk newChunk = Instantiate(chunk,root);
-            if (chunks.Count>0)
-            {
-                newChunk.transform.position = chunks[chunks.Count - 1].End.position - newChunk.Begin.localPosition;
-            }
-            else
-            {
-                var position = newChunk.transform.position;
-                position =new Vector3( position.x, position.y, position.z-chunkDestroyDistance);
-                newChunk.transform.position = position;
-            }
-
+            Chunk newChunk = Instantiate(chunk, root);
             SetUpChunk(newChunk);
             chunks.Add(newChunk);
         }
 
         public void UpdateChunks(Transform player)
         {
-            if (chunks.Count<chunkCountToExist)
+            if (chunks.Count < chunkCountToExist)
             {
                 SpawnChunk(GetRandomChunk(player));
-            }if (chunks[0].gameObject.transform.position.z < player.position.z - chunkDestroyDistance)
+            }
+
+            if (chunks[0].gameObject.transform.position.z < player.position.z - chunkDestroyDistance)
             {
                 DeleteChunk();
             }
@@ -110,7 +156,6 @@ namespace Game.Chunk
 
         private Chunk GetRandomChunk(Transform player)
         {
-        
             List<float> chances = new List<float>();
             for (int i = 0; i < chunkPrefabs.Length; i++)
             {
@@ -125,13 +170,11 @@ namespace Game.Chunk
                 sum += chances[i];
                 if (value < sum)
                 {
-                    
                     return chunkPrefabs[i];
                 }
             }
 
             return chunkPrefabs[chunkPrefabs.Length - 1];
-            
         }
     }
 }

@@ -7,10 +7,19 @@ namespace Game.Obstacles
     public class Obstacle : MonoBehaviour
     {
         [SerializeField] private Direction directionRequirement;
-        [SerializeField] Color colorRequirement;
-        public Direction DirRequirement => directionRequirement;
-        public Color ColorRequirement => colorRequirement;
+        [SerializeField] private Color colorRequirement;
+        
 
-
+        public Direction DirectionRequirement
+        {
+            get => directionRequirement;
+            set => directionRequirement = value;
+        }
+        
+        public Color ColorRequirement
+        {
+            get => colorRequirement;
+            set => colorRequirement = value;
+        }
     }
 }

@@ -2065,6 +2065,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2111,7 +2112,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 215
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2151,6 +2152,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: {x: -3.13, y: 4.06, z: -7.76}
   _target: {fileID: 1619139779}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 963194228}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &971737665
 GameObject:
   m_ObjectHideFlags: 0
@@ -4263,6 +4324,7 @@ GameObject:
   - component: {fileID: 1786062499}
   - component: {fileID: 1786062502}
   - component: {fileID: 1786062504}
+  - component: {fileID: 1786062501}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -4284,12 +4346,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swipeInputController: {fileID: 1786062503}
   playerController: {fileID: 1380038343906332732}
-  velocity: 5
+  velocityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 4
+      inSlope: 0.014168978
+      outSlope: 0.014168978
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 139.44492
+      value: 5.975792
+      inSlope: 0.0004897165
+      outSlope: 0.0004897165
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13780914
+    - serializedVersion: 3
+      time: 500
+      value: 8
+      inSlope: 0.005614144
+      outSlope: 0.005614144
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   moveTime: 0.2
   jumpTime: 0.6
   jumpForce: 1.2
   chunkController: {fileID: 1786062502}
   effectController: {fileID: 1786062504}
+  colorMaterialMatcher: {fileID: 1786062501}
   audioController: {fileID: 746233433}
   rotateSound: {fileID: 8300000, guid: c28fa2310a542704085aa572cb558676, type: 3}
   jumpSound: {fileID: 8300000, guid: 4768ce1951087104aafe08db499a4889, type: 3}
@@ -4312,6 +4407,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786062501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786062498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd2231623c34f75a3a110f2603ce321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenObstacleMaterial: {fileID: 2100000, guid: 0265abe4ff5aec94db2677056447f8e0, type: 2}
+  orangeObstacleMaterial: {fileID: 2100000, guid: 30e5b3c99c76bc74881175d1c07a788c, type: 2}
+  purpleObstacleMaterial: {fileID: 2100000, guid: 44c1e51d47df9dc41b547b9e691a5daa, type: 2}
+  greenEffectMaterial: {fileID: 2100000, guid: 403c4a059e845ab4da277ff9c13ce300, type: 2}
+  orangeEffectMaterial: {fileID: 2100000, guid: c89b603fae5e41e478395d9390086f19, type: 2}
+  purpleEffectMaterial: {fileID: 2100000, guid: 411364affbd0b884981d5959909223e6, type: 2}
 --- !u!114 &1786062502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4325,9 +4438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkPrefabs:
-  - {fileID: 1773448307937888, guid: 65556872e4777214bbbce99589faffdb, type: 3}
-  - {fileID: 1753627448214849784, guid: ec3a302236932634192f5c08db2e0c3c, type: 3}
-  - {fileID: 7631070212226090659, guid: d1deec3182f22b049b88c05a8b55a732, type: 3}
+  - {fileID: 1003199277157455354, guid: 880bf563cb1b43943bf6c6ad2df2510b, type: 3}
   - {fileID: 5650484487884199419, guid: 588512434a461b141a38f0871eb56bbf, type: 3}
   startChunkPrefab: {fileID: 1773448307937888, guid: 65556872e4777214bbbce99589faffdb, type: 3}
   root: {fileID: 2130631671}

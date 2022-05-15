@@ -9,7 +9,7 @@ namespace Game.Movement
         //player
         private PlayerModel playerModel;
         private Transform playerTransform;
-        private Vector3 velocity;
+        private AnimationCurve velocityCurve;
         private Rigidbody rigidbody;
 
         //lines
@@ -26,7 +26,7 @@ namespace Game.Movement
         {
             this.playerModel = playerModel;
             playerTransform = playerController.transform;
-            velocity = playerModel.Velocity;
+            velocityCurve = playerModel.VelocityCurve;
             this.rigidbody = rigidbody;
         }
 
@@ -49,9 +49,11 @@ namespace Game.Movement
 
             isMoving = true;
             playerTransform.DORotate(rot, playerModel.MoveTime, RotateMode.WorldAxisAdd).SetEase(Ease.Linear);
+            var velocity = new Vector3(0, 0, 1);
+            var z=playerTransform.position.z;
             if (IsJump(move))
             {
-                Vector3 delta = playerModel.JumpTime * velocity;
+                Vector3 delta = playerModel.JumpTime * velocityCurve.Evaluate(z)*velocity;
                 playerTransform.DOJump(playerTransform.position + delta + new Vector3(0, 0, 1), playerModel.JumpForce,
                         1, playerModel.JumpTime)
                     .SetEase(Ease.Linear)
@@ -59,7 +61,7 @@ namespace Game.Movement
             }
             else
             {
-                Vector3 delta = playerModel.MoveTime * velocity;
+                Vector3 delta = playerModel.MoveTime * velocityCurve.Evaluate(z)*velocity;
                 playerTransform.DOMove(playerTransform.position + dir * lineSideDistance + delta, playerModel.MoveTime)
                     .OnComplete(OnMoveComplete);
             }
@@ -73,7 +75,7 @@ namespace Game.Movement
 
         public void StartSliding()
         {
-            rigidbody.velocity = velocity;
+            rigidbody.velocity = new Vector3(0,0,velocityCurve.Evaluate(playerTransform.position.z));
         }
 
         public void StopSliding()

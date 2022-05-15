@@ -14,7 +14,7 @@ namespace Game
         [Header("Input")] [SerializeField] private SwipeInputController swipeInputController;
         
         [Header("Player")] [SerializeField] private PlayerController playerController;
-        [SerializeField] private float velocity;
+        [SerializeField] private AnimationCurve velocityCurve;
         [SerializeField]private float moveTime ;
         [SerializeField] private float jumpTime;
         [SerializeField]private float jumpForce;
@@ -22,6 +22,7 @@ namespace Game
         [Header("Chunk")] [SerializeField] private ChunkController chunkController;
         
         [Header("Effects")] [SerializeField] private EffectController effectController;
+        [Header("Material Matcher")] [SerializeField] private ColorMaterialMatcher colorMaterialMatcher;
         
         [Header("Sound")] [SerializeField] private AudioController audioController;
         [SerializeField] private AudioClip rotateSound;
@@ -51,6 +52,7 @@ namespace Game
        
         void Start()
         {
+            chunkController.ColorMaterialMatcher = colorMaterialMatcher;
             state = GameState.DEAD;
             ResetGame();
            
@@ -71,7 +73,7 @@ namespace Game
            
             playerController.ObstacleHitEvent += obstacle =>
             {
-                var isMatch = playerModel.CheckRequirement(obstacle.DirRequirement, obstacle.ColorRequirement);
+                var isMatch = playerModel.CheckRequirement(obstacle.DirectionRequirement, obstacle.ColorRequirement);
 
                 if (isMatch)
                 {
@@ -104,7 +106,7 @@ namespace Game
             playerController.transform.position = new Vector3(0, 0, 0);
             playerController.transform.rotation = Quaternion.identity;
             playerController.gameObject.SetActive(true);
-            playerModel = new PlayerModel(moveTime,jumpTime,jumpForce,velocity);
+            playerModel = new PlayerModel(moveTime,jumpTime,jumpForce,velocityCurve);
             moveManager = new MoveManager(playerModel, playerController, playerController.GetComponent<Rigidbody>());
            
         }

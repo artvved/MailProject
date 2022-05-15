@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.Obstacles;
 using UnityEngine;
 
@@ -9,9 +10,11 @@ namespace Game.Chunk
       [SerializeField] private Transform begin;
       [SerializeField] private Transform end;
       
-      [SerializeField] private Transform[] places;
+      [SerializeField] private Obstacle[] places;
+      [SerializeField] private ParticleSystem[] laserSparkEffectPlaces;
+     
 
-      [SerializeField] private Obstacle[] obstaclePrefabs;
+
       [SerializeField] private bool isSingleColor;
 
       public AnimationCurve ChanceFromDistance => chanceFromDistance;
@@ -20,10 +23,12 @@ namespace Game.Chunk
 
       public Transform End => end;
 
-      public Transform[] Places => places;
+      public Obstacle[] Places => places;
 
-      public Obstacle[] ObstaclePrefabs => obstaclePrefabs;
-
+      public ParticleSystem[] LaserSparkEffectPlaces => laserSparkEffectPlaces;
+     
       public bool IsSingleColor => isSingleColor;
+
+     
    }
 }
