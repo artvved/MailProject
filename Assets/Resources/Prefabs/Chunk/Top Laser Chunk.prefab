@@ -376,14 +376,6 @@ MonoBehaviour:
   - {fileID: 5921480010406044053}
   - {fileID: 238142333409055537}
   - {fileID: 5122259218529777401}
-  obstaclePrefabs:
-  - {fileID: -3493752284261430788, guid: 72657735ea2376244a20df4f3c26fe9e, type: 3}
-  - {fileID: 6966045510308211778, guid: 467dbfd9ef4e66d4e84ee85f25e2160a, type: 3}
-  - {fileID: 5380060074755648944, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
-  laserSparkEffectPrefabs:
-  - {fileID: 6951467823450062664, guid: 2f5c65e43fecefe4b96549ec7e566e36, type: 3}
-  - {fileID: 6951467823450062664, guid: 8c754e60f3f443e4182dbb2dedd35bec, type: 3}
-  - {fileID: 6951467823450062664, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
   isSingleColor: 1
 --- !u!1001 &44013482388725370
 PrefabInstance:
@@ -3541,6 +3533,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6527444570220575323}
     m_Modifications:
+    - target: {fileID: 2073763804405222801, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073763804405222801, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4809528335503632967, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3688,6 +3688,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6527444570580032393}
     m_Modifications:
+    - target: {fileID: 2073763804405222801, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073763804405222801, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4809528335503632967, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3951,6 +3959,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6527444570890868740}
     m_Modifications:
+    - target: {fileID: 2073763804405222801, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2073763804405222801, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4809528335503632967, guid: d2e47acc9fd68ec4dacb67b17af4b98a, type: 3}
       propertyPath: m_RootOrder
       value: 0
