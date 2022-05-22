@@ -35,10 +35,11 @@ namespace Game
 
         private PlayerModel playerModel;
         private MoveManager moveManager;
+        private ScoreController scoreController;
         private GameState state;
-        private int score = 0;
+        private Score score;
 
-        public int Score => score;
+        public int Score => score.TotalScore();
 
         public AudioMixerGroup Mixer => mixer;
 
@@ -52,6 +53,7 @@ namespace Game
        
         void Start()
         {
+            scoreController = new ScoreController();
             chunkController.ColorMaterialMatcher = colorMaterialMatcher;
             state = GameState.DEAD;
             ResetGame();
@@ -79,6 +81,7 @@ namespace Game
                 {
                     audioController.PlaySound(matchSound);
                     effectController.PlayMatchEffect(playerController.transform.position,obstacle.ColorRequirement);
+                    score.BonusScore += scoreController.PointsForMatch(playerController.transform.position.z);
                 }
                 else
                 {
@@ -103,6 +106,7 @@ namespace Game
 
         private void ResetGame()
         {
+            score = new Score();
             playerController.transform.position = new Vector3(0, 0, 0);
             playerController.transform.rotation = Quaternion.identity;
             playerController.gameObject.SetActive(true);
@@ -125,14 +129,14 @@ namespace Game
         {
             if (PlayerPrefs.HasKey(personalBestString))
             {
-                if (PlayerPrefs.GetInt(personalBestString) < score)
+                if (PlayerPrefs.GetInt(personalBestString) < score.TotalScore())
                 {
-                    PlayerPrefs.SetInt(personalBestString, score);
+                    PlayerPrefs.SetInt(personalBestString, score.TotalScore());
                 }
             }
             else
             {
-                PlayerPrefs.SetInt(personalBestString, score);
+                PlayerPrefs.SetInt(personalBestString, score.TotalScore());
             }
         }
 
@@ -155,7 +159,7 @@ namespace Game
         {
             if (state == GameState.ALIVE)
             {
-                score = (int) playerController.transform.position.z;
+                score.PositionScore = (int) playerController.transform.position.z;
                 ScoreChangeEvent?.Invoke();
                 chunkController.UpdateChunks(playerController.transform);
             }
