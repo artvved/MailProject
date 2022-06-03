@@ -11,9 +11,9 @@ namespace Game
 {
     public class GameController : MonoBehaviour
     {
-        [Header("Input")] [SerializeField] private SwipeInputController swipeInputController;
+        [Header("Input")] [SerializeField] private InputController inputController;
         
-        [Header("Player")] [SerializeField] private PlayerController playerController;
+        [Header("Player")] [SerializeField] private PlayerView playerView;
         [SerializeField] private AnimationCurve velocityCurve;
         [SerializeField]private float moveTime ;
         [SerializeField] private float jumpTime;
@@ -39,7 +39,7 @@ namespace Game
         private GameState state;
         private Score score;
 
-        public int Score => score.TotalScore();
+        public int Score => scoreController.Score.TotalScore();
 
         public AudioMixerGroup Mixer => mixer;
 
@@ -57,9 +57,8 @@ namespace Game
             chunkController.ColorMaterialMatcher = colorMaterialMatcher;
             state = GameState.DEAD;
             ResetGame();
-           
-
-            swipeInputController.InputEvent += (move =>
+            
+            inputController.InputEvent += (move =>
             {
                 if (state == GameState.ALIVE)
                 {
@@ -73,27 +72,25 @@ namespace Game
                 }
             });
            
-            playerController.ObstacleHitEvent += obstacle =>
+            playerView.ObstacleHitEvent += obstacle =>
             {
                 var isMatch = playerModel.CheckRequirement(obstacle.DirectionRequirement, obstacle.ColorRequirement);
 
                 if (isMatch)
                 {
                     audioController.PlaySound(matchSound);
-                    effectController.PlayMatchEffect(playerController.transform.position,obstacle.ColorRequirement);
-                    score.BonusScore += scoreController.PointsForMatch(playerController.transform.position.z);
+                    effectController.PlayMatchEffect(playerView.transform.position,obstacle.ColorRequirement);
+                    score.BonusScore += scoreController.PointsForMatch(playerView.transform.position.z);
                 }
                 else
                 {
                     audioController.PlaySound(mismatchSound);
-                    effectController.PlayMismatchEffect(playerController.transform.position);
+                    effectController.PlayMismatchEffect(playerView.transform.position);
                     StopGame();
                     DeathEvent?.Invoke();
                    
                 }
             };
-
-           
         }
 
         public void StartGame()
@@ -106,12 +103,14 @@ namespace Game
 
         private void ResetGame()
         {
-            score = new Score();
-            playerController.transform.position = new Vector3(0, 0, 0);
-            playerController.transform.rotation = Quaternion.identity;
-            playerController.gameObject.SetActive(true);
-            playerModel = new PlayerModel(moveTime,jumpTime,jumpForce,velocityCurve);
-            moveManager = new MoveManager(playerModel, playerController, playerController.GetComponent<Rigidbody>());
+            scoreController.Score=new Score();
+            score=scoreController.Score;
+           
+            playerView.transform.position = new Vector3(0, 0, 0);
+            playerView.transform.rotation = Quaternion.identity;
+            playerView.gameObject.SetActive(true);
+            playerModel = new PlayerModel(moveTime,jumpTime,jumpForce,velocityCurve,playerView.transform);
+            moveManager = new MoveManager(playerModel, playerModel.Transform , playerView.GetComponent<Rigidbody>());
            
         }
 
@@ -121,7 +120,7 @@ namespace Game
             moveManager.StopSliding();
             SaveScore();
             chunkController.ClearChunks();
-            playerController.gameObject.SetActive(false);
+            playerView.gameObject.SetActive(false);
             
         }
 
@@ -159,9 +158,9 @@ namespace Game
         {
             if (state == GameState.ALIVE)
             {
-                score.PositionScore = (int) playerController.transform.position.z;
+                score.PositionScore = (int) playerModel.Transform.position.z;
                 ScoreChangeEvent?.Invoke();
-                chunkController.UpdateChunks(playerController.transform);
+                chunkController.UpdateChunks(playerModel.Transform);
             }
         }
     }

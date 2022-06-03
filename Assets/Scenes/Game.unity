@@ -4344,8 +4344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbb98a0f2eb5e547bb63ea521345159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeInputController: {fileID: 1786062503}
-  playerController: {fileID: 1380038343906332732}
+  inputController: {fileID: 1786062503}
+  playerView: {fileID: 1380038343906332732}
   velocityCurve:
     serializedVersion: 2
     m_Curve:

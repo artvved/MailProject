@@ -22,10 +22,10 @@ namespace Game.Movement
 
         public bool IsMoving => isMoving;
 
-        public MoveManager(PlayerModel playerModel, PlayerController playerController, Rigidbody rigidbody)
+        public MoveManager(PlayerModel playerModel, Transform transform, Rigidbody rigidbody)
         {
             this.playerModel = playerModel;
-            playerTransform = playerController.transform;
+            playerTransform = transform;
             velocityCurve = playerModel.VelocityCurve;
             this.rigidbody = rigidbody;
         }

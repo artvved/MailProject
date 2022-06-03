@@ -6,17 +6,16 @@ using UnityEngine;
 
 namespace Game
 {
-    public class KeyboardInputController : MonoBehaviour,IInputable
+    public class KeyboardInputController : InputController
     {
-        public event Action<Move> InputEvent;
-
+        public override event Action<Move> InputEvent;
         private KeyCode left = KeyCode.LeftArrow;
         private KeyCode right = KeyCode.RightArrow;
         private KeyCode up = KeyCode.UpArrow;
         private KeyCode back = KeyCode.DownArrow;
-  
-    
-        void Update()
+        
+        
+        protected override void MoveAction()
         {
             Move curMove;
             if (Input.GetKeyDown(left))
@@ -37,7 +36,13 @@ namespace Game
                 curMove = Move.BACK;
                 InputEvent?.Invoke(curMove);
             }
+
+        }
         
+        
+        void Update()
+        {
+           MoveAction();
         }
         
        

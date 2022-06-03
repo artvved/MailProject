@@ -96,29 +96,7 @@ namespace Game.Chunk
         {
             return colors[Random.Range(0, colors.Length)];
         }
-
-        private void PlaceObstacle(Obstacle obstaclePlace, Obstacle newObstacle, Transform rootChunk)
-        {
-            Transform tr = obstaclePlace.transform;
-            var obs = Instantiate(newObstacle, rootChunk);
-            obs.transform.position = tr.position;
-            obs.transform.rotation = tr.rotation;
-            obs.transform.localScale = tr.lossyScale;
-
-            obs.DirectionRequirement = obstaclePlace.DirectionRequirement;
-            Destroy(tr.gameObject);
-        }
-
-        private void PlaceEffect(ParticleSystem effectPlace, ParticleSystem newEffect, Transform rootChunk)
-        {
-            Transform tr = effectPlace.transform;
-            var obs = Instantiate(newEffect, rootChunk);
-            obs.transform.position = tr.position;
-            obs.transform.rotation = tr.rotation;
-            obs.transform.localScale = tr.lossyScale;
-
-            Destroy(tr.gameObject);
-        }
+        
 
         public void ClearChunks()
         {

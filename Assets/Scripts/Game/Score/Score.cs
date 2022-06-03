@@ -2,8 +2,8 @@
 {
     public class Score
     {
-        public int PositionScore = 0;
-        public int BonusScore = 0;
+        public int PositionScore { get; set; }
+        public int BonusScore  { get; set; }
 
         public Score()
         {

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerView : MonoBehaviour
     {
         public event Action<Obstacle> ObstacleHitEvent;
         private void OnTriggerEnter(Collider other)

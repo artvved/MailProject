@@ -10,20 +10,23 @@ namespace Game.Player
         private float jumpTime ;
         private float jumpForce ;
         private AnimationCurve velocityCurve;
-        
+        private Transform transform;
+
+        public Transform Transform => transform;
         public PlayerState State => state;
         public float MoveTime => moveTime;
         public float JumpTime => jumpTime;
         public float JumpForce => jumpForce;
         public AnimationCurve VelocityCurve => velocityCurve;
 
-        public PlayerModel( float moveTime, float jumpTime, float jumpForce, AnimationCurve velocityCurve)
+        public PlayerModel( float moveTime, float jumpTime, float jumpForce, AnimationCurve velocityCurve,Transform transform)
         {
             state = new PlayerState();
             this.moveTime = moveTime;
             this.jumpTime = jumpTime;
             this.jumpForce = jumpForce;
             this.velocityCurve = velocityCurve;
+            this.transform = transform;
         }
 
         

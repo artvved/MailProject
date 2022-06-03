@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace Game
 {
-    public class SwipeInputController : MonoBehaviour, IInputable
+    public class SwipeInputController : InputController
     {
-        public event Action<Move> InputEvent;
+        public override event Action<Move> InputEvent;
+        
         private Vector2 firstPressPos;
         private Vector2 secondPressPos;
         private Vector2 currentSwipe;
@@ -18,8 +19,14 @@ namespace Game
 
         void Update()
         {
+            MoveAction();
+        }
+        
+        protected override void MoveAction()
+        {
             Swipe();
         }
+        
 
         private void Swipe()
         {
