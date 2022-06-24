@@ -79,8 +79,8 @@ namespace Game
                 if (isMatch)
                 {
                     audioController.PlaySound(matchSound);
-                    effectController.PlayMatchEffect(playerView.transform.position,obstacle.ColorRequirement);
-                    score.BonusScore += scoreController.PointsForMatch(playerView.transform.position.z);
+                    effectController.PlayMatchEffect(playerView,playerModel.Transform.position,obstacle.ColorRequirement);
+                    score.BonusScore += scoreController.PointsForMatch(playerModel.Transform.position.z);
                 }
                 else
                 {

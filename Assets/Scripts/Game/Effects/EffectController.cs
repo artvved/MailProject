@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using Game.Player;
+using UnityEngine;
 using Color = Game.Player.Color;
 
 namespace Game.Effects
@@ -23,8 +25,12 @@ namespace Game.Effects
             renderer = matchEffect.GetComponent<ParticleSystemRenderer>();
         }
 
-        public void PlayMatchEffect(Vector3 position, Color obstacleColorRequirement)
+        public void PlayMatchEffect(PlayerView playerView, Vector3 position, Color obstacleColorRequirement)
         {
+            Vector3 scale = playerView.transform.localScale;
+            playerView.transform.DOScale(scale*1.1f,0.15f)
+                .SetEase(Ease.InOutSine)
+                .SetLoops(2,LoopType.Yoyo);
             SetMaterial(obstacleColorRequirement);
             PlayEffect(position,matchEffect);
         }
