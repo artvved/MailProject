@@ -80,7 +80,7 @@ namespace Game.Movement
 
         public void StopSliding()
         {
-            playerTransform.DOKill();
+            //playerTransform.DOKill();
             rigidbody.velocity = Vector3.zero;
         }
 

@@ -10,19 +10,39 @@ namespace Game.Chunk
 {
     public class ChunkController : MonoBehaviour
     {
-        [SerializeField] private Chunk[] chunkPrefabs;
+        [Header("Material Matcher")] [SerializeField]
+        private ColorMaterialMatcher colorMaterialMatcher;
 
+        [SerializeField] private CoinSpawnController coinSpawnController;
+
+        [SerializeField] private Chunk[] chunkPrefabs;
         [SerializeField] private Chunk startChunkPrefab;
         [SerializeField] private Transform root;
 
+        //chunks
         private List<Chunk> chunks = new List<Chunk>();
-
         private int chunkCountToExist = 5;
-        private float chunkDestroyDistance = 15f;
-        public ColorMaterialMatcher ColorMaterialMatcher { get; set; }
 
+        private float chunkDestroyDistance = 15f;
+
+        //decreasing coeff
+        private Dictionary<Chunk, float> chunkDecreaseSpawnChanceMap;
+
+        private Transform playerTransform;
+
+        //obstacle colors
         private Color[] colors = new[] {Color.GREEN, Color.ORANGE, Color.PURPLE};
 
+
+        public void Init(Transform player)
+        {
+            this.playerTransform = player;
+            chunkDecreaseSpawnChanceMap = new Dictionary<Chunk, float>();
+            foreach (var prefab in chunkPrefabs)
+            {
+                chunkDecreaseSpawnChanceMap.Add(prefab, 1f);
+            }
+        }
 
         public void SpawnStartChunks()
         {
@@ -34,11 +54,22 @@ namespace Game.Chunk
 
         private void SetUpChunk(Chunk chunk)
         {
-            //setup position
+            
             SetUpChunkPosition(chunk);
-            //setup obstacles and effects
+            SetUpChunkCoins(chunk);
             SetUpChunkObstacles(chunk);
             SetUpChunkEffects(chunk);
+        }
+        private void SetUpChunkCoins(Chunk chunk)
+        {
+            if (chunk.CoinPlaces.Length!=0)
+            {
+                if (coinSpawnController.CanSpawn(playerTransform.position.z))
+                {
+                    coinSpawnController.SpawnCoinToPlace(chunk.CoinPlaces[Random.Range(0, chunk.CoinPlaces.Length)]);
+                }
+            }
+            
         }
 
         private void SetUpChunkObstacles(Chunk chunk)
@@ -47,7 +78,7 @@ namespace Game.Chunk
             if (chunk.IsSingleColor)
             {
                 var color = GetRandomObstacleColor();
-                var obsMat = ColorMaterialMatcher.GetObstacleMaterial(color);
+                var obsMat = colorMaterialMatcher.GetObstacleMaterial(color);
                 for (int i = 0; i < obstacles.Length; i++)
                 {
                     obstacles[i].ColorRequirement = color;
@@ -59,7 +90,7 @@ namespace Game.Chunk
                 for (int i = 0; i < obstacles.Length; i++)
                 {
                     var color = GetRandomObstacleColor();
-                    var obsMat = ColorMaterialMatcher.GetObstacleMaterial(color);
+                    var obsMat = colorMaterialMatcher.GetObstacleMaterial(color);
                     obstacles[i].ColorRequirement = color;
                     obstacles[i].GetComponentInChildren<MeshRenderer>().material = obsMat;
                 }
@@ -73,7 +104,7 @@ namespace Game.Chunk
             for (int i = 0; i < obstacles.Length; i++)
             {
                 var color = obstacles[i].ColorRequirement;
-                var obsMat = ColorMaterialMatcher.GetEffectMaterial(color);
+                var obsMat = colorMaterialMatcher.GetEffectMaterial(color);
                 laserSparkEffectPlaces[i].GetComponent<Renderer>().material = obsMat;
             }
         }
@@ -92,11 +123,6 @@ namespace Game.Chunk
             }
         }
 
-        private Color GetRandomObstacleColor()
-        {
-            return colors[Random.Range(0, colors.Length)];
-        }
-        
 
         public void ClearChunks()
         {
@@ -113,14 +139,23 @@ namespace Game.Chunk
             chunks.Add(newChunk);
         }
 
-        public void UpdateChunks(Transform player)
+        public void UpdateChunks()
         {
             if (chunks.Count < chunkCountToExist)
             {
-                SpawnChunk(GetRandomChunk(player));
+                var rnd = GetRandomChunk();
+                SpawnChunk(rnd);
+                
+                //reset decrease
+                for (int j = 0; j < chunkPrefabs.Length; j++)
+                {
+                    chunkDecreaseSpawnChanceMap[chunkPrefabs[j]] =1f;
+                }
+                //set decrease for prev spawned chunk
+                chunkDecreaseSpawnChanceMap[rnd] =2f ;
             }
 
-            if (chunks[0].gameObject.transform.position.z < player.position.z - chunkDestroyDistance)
+            if (chunks[0].gameObject.transform.position.z < playerTransform.position.z - chunkDestroyDistance)
             {
                 DeleteChunk();
             }
@@ -132,12 +167,19 @@ namespace Game.Chunk
             chunks.RemoveAt(0);
         }
 
-        private Chunk GetRandomChunk(Transform player)
+        private Color GetRandomObstacleColor()
+        {
+            return colors[Random.Range(0, colors.Length)];
+        }
+
+        private Chunk GetRandomChunk()
         {
             List<float> chances = new List<float>();
             for (int i = 0; i < chunkPrefabs.Length; i++)
             {
-                chances.Add(chunkPrefabs[i].ChanceFromDistance.Evaluate(player.transform.position.z));
+                var newChance = chunkPrefabs[i].ChanceFromDistance.Evaluate(
+                                    playerTransform.position.z)/ chunkDecreaseSpawnChanceMap[chunkPrefabs[i]];
+                chances.Add(newChance);
             }
 
             float value = Random.Range(0, chances.Sum());

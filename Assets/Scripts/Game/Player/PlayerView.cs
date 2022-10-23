@@ -10,6 +10,7 @@ namespace Game.Player
     public class PlayerView : MonoBehaviour
     {
         public event Action<Obstacle> ObstacleHitEvent;
+        public event Action<CoinView> CoinHitEvent;
         private void OnTriggerEnter(Collider other)
         {
             var obs = other.GetComponent<Obstacle>();
@@ -17,7 +18,11 @@ namespace Game.Player
             {
                 ObstacleHitEvent?.Invoke(obs);
             }
-                
+            var coin = other.GetComponent<CoinView>();
+            if (coin!=null)
+            {
+                CoinHitEvent?.Invoke(coin);
+            }
             
             
         }

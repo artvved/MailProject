@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &88987469456327334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1982155059506644363}
+  m_Layer: 0
+  m_Name: CoinPlaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1982155059506644363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88987469456327334}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5539748627098234700}
+  - {fileID: 168435496939268024}
+  m_Father: {fileID: 4717686983398478718}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657452127269054216
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +94,7 @@ Transform:
   - {fileID: 2983259307472099398}
   - {fileID: 9106706852323700356}
   - {fileID: 8511536426843196077}
+  - {fileID: 1982155059506644363}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,10 +148,73 @@ MonoBehaviour:
   places:
   - {fileID: 8558982804543369712}
   - {fileID: 8558982803856643230}
+  coinPlaces:
+  - {fileID: 5539748627098234700}
+  - {fileID: 168435496939268024}
   laserSparkEffectPlaces:
   - {fileID: 3807014291072129792}
   - {fileID: 2444753655527328876}
   isSingleColor: 1
+--- !u!1 &2724147192675875529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168435496939268024}
+  m_Layer: 0
+  m_Name: CoinPlace (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &168435496939268024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724147192675875529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2, y: 1.2, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1982155059506644363}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3734103613402035549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5539748627098234700}
+  m_Layer: 0
+  m_Name: CoinPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5539748627098234700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734103613402035549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1982155059506644363}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4354503244515189021
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,6 +2342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
+--- !u!4 &5683688113699955953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8254756824547047601, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
+  m_PrefabInstance: {fileID: 4354503245702995008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8558982804543369712 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5380060074755648944, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
@@ -2257,11 +2358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b32a56d3924404b93b44aa6d63d9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &5683688113699955953 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8254756824547047601, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
-  m_PrefabInstance: {fileID: 4354503245702995008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4533205377001404941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3196,14 +3292,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
---- !u!4 &5390261750144815963 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2189777414387480339, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
-  m_PrefabInstance: {fileID: 6101718288046023752}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &3807014291072129792 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6951467823450062664, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
+  m_PrefabInstance: {fileID: 6101718288046023752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5390261750144815963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2189777414387480339, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
   m_PrefabInstance: {fileID: 6101718288046023752}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6322836411837518401

@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 2199654200749003854}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &814905656155026112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5528134335559706106}
+  m_Layer: 0
+  m_Name: CoinPlace (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5528134335559706106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814905656155026112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2, y: 1.2, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4356329575110479653}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2824279292397381136
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +186,36 @@ Transform:
   m_Father: {fileID: 2199654200749003854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3484823561586396269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5187985096877262600}
+  m_Layer: 0
+  m_Name: CoinPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5187985096877262600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484823561586396269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2, y: 1.2, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4356329575110479653}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5162559087180632850
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +248,7 @@ Transform:
   - {fileID: 8545721095794515830}
   - {fileID: 2422847704321943988}
   - {fileID: 3017736996273327517}
+  - {fileID: 4356329575110479653}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -241,6 +302,9 @@ MonoBehaviour:
   places:
   - {fileID: 2970606661077275859}
   - {fileID: 2970606660125004718}
+  coinPlaces:
+  - {fileID: 5187985096877262600}
+  - {fileID: 5528134335559706106}
   laserSparkEffectPlaces:
   - {fileID: 4199692786961002132}
   - {fileID: 9084790659523480412}
@@ -274,6 +338,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2199654200749003854}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6684349337225347933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4356329575110479653}
+  m_Layer: 0
+  m_Name: CoinPlaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4356329575110479653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684349337225347933}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5187985096877262600}
+  - {fileID: 5528134335559706106}
+  m_Father: {fileID: 2199654200749003854}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7174347622046524834
 GameObject:
@@ -1332,14 +1428,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
---- !u!4 &2424611083797255 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2189777414387480339, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
-  m_PrefabInstance: {fileID: 2191911473077515284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &9084790659523480412 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6951467823450062664, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
+  m_PrefabInstance: {fileID: 2191911473077515284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2424611083797255 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2189777414387480339, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
   m_PrefabInstance: {fileID: 2191911473077515284}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2304628943226379166

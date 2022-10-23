@@ -8,6 +8,7 @@ namespace UI
     {
 
         [SerializeField] private TextMeshProUGUI personalBestText;
+        [SerializeField] private TextMeshProUGUI coinsCountText;
     
         public event Action StartGameEvent;
     
@@ -46,8 +47,12 @@ namespace UI
 
         public void SetScoreText(int score)
         {
-        
             personalBestText.text= "Personal best : " + score;
+        }
+        
+        public void SetCoinsCountText(int score)
+        {
+            coinsCountText.text= ": "+score;
         }
     }
 }

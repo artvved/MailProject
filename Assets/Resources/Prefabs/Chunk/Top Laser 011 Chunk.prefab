@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &135400015195906243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2577119083189265787}
+  m_Layer: 0
+  m_Name: CoinPlaces
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2577119083189265787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135400015195906243}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3424587764084211919}
+  - {fileID: 4689074375966624100}
+  m_Father: {fileID: 2714097143724251213}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822405594081458875
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +187,36 @@ Transform:
   m_Father: {fileID: 2714097143724251213}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5268964433451493525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3424587764084211919}
+  m_Layer: 0
+  m_Name: CoinPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3424587764084211919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5268964433451493525}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2577119083189265787}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6394181323396835745
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +283,36 @@ Transform:
   m_Father: {fileID: 5599193835636118389}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6424814263799937375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4689074375966624100}
+  m_Layer: 0
+  m_Name: CoinPlace (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4689074375966624100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424814263799937375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2, y: 1.2, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2577119083189265787}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8345887289891826747
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +375,7 @@ Transform:
   - {fileID: 5599193835636118389}
   - {fileID: 1924015648937862583}
   - {fileID: 1355006109775823262}
+  - {fileID: 2577119083189265787}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,6 +429,9 @@ MonoBehaviour:
   places:
   - {fileID: 1303055605763586755}
   - {fileID: 1303055606049577168}
+  coinPlaces:
+  - {fileID: 3424587764084211919}
+  - {fileID: 4689074375966624100}
   laserSparkEffectPlaces:
   - {fileID: 5766794433497780275}
   - {fileID: 100376036597146263}
@@ -2327,14 +2423,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
---- !u!4 &3322795782157146216 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2189777414387480339, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
-  m_PrefabInstance: {fileID: 3494608440030506875}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &5766794433497780275 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6951467823450062664, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
+  m_PrefabInstance: {fileID: 3494608440030506875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3322795782157146216 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2189777414387480339, guid: e11274f1ce025ca419f02374e62e29ed, type: 3}
   m_PrefabInstance: {fileID: 3494608440030506875}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3705835357017626994
@@ -3693,6 +3789,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
+--- !u!4 &3040628564758589378 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8254756824547047601, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
+  m_PrefabInstance: {fileID: 6394181324597155699}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1303055605763586755 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5380060074755648944, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
@@ -3704,11 +3805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b32a56d3924404b93b44aa6d63d9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &3040628564758589378 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8254756824547047601, guid: bc443cf6768d3aa4ea30d5a054612fd0, type: 3}
-  m_PrefabInstance: {fileID: 6394181324597155699}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6502021305853440318
 PrefabInstance:
   m_ObjectHideFlags: 0

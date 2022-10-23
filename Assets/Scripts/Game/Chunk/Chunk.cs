@@ -11,10 +11,9 @@ namespace Game.Chunk
       [SerializeField] private Transform end;
       
       [SerializeField] private Obstacle[] places;
+      [SerializeField] private Transform[] coinPlaces;
       [SerializeField] private ParticleSystem[] laserSparkEffectPlaces;
-     
-
-
+      
       [SerializeField] private bool isSingleColor;
 
       public AnimationCurve ChanceFromDistance => chanceFromDistance;
@@ -29,6 +28,6 @@ namespace Game.Chunk
      
       public bool IsSingleColor => isSingleColor;
 
-     
+      public Transform[] CoinPlaces => coinPlaces;
    }
 }

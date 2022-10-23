@@ -52,6 +52,7 @@ namespace UI
             startScreen.EnableEvent += () =>
             {
                 startScreen.SetScoreText(gameController.GetPersonalBest());
+                startScreen.SetCoinsCountText(gameController.GetCoinsCount());
                 gameController.PlayMenuMusic();
             };
             startScreen.StartGameEvent += () =>

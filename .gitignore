@@ -2,6 +2,7 @@ Library/
 Logs/
 Temp/
 Debug/
+Build/
 UserSettings/
 
 *.sln
